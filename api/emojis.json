@@ -1,0 +1,30 @@
+{
+  "source": "local-emoji-catalog",
+  "count": 24,
+  "emojis": [
+    { "char": "😀", "name": "grinning face", "group": "smileys" },
+    { "char": "😍", "name": "smiling face with heart-eyes", "group": "smileys" },
+    { "char": "🥺", "name": "pleading face", "group": "smileys" },
+    { "char": "🔥", "name": "fire", "group": "travel-places" },
+    { "char": "❤️", "name": "red heart", "group": "symbols" },
+    { "char": "✨", "name": "sparkles", "group": "activities" },
+    { "char": "🚀", "name": "rocket", "group": "travel-places" },
+    { "char": "✈️", "name": "airplane", "group": "travel-places" },
+    { "char": "🐶", "name": "dog face", "group": "animals-nature" },
+    { "char": "🐱", "name": "cat face", "group": "animals-nature" },
+    { "char": "🍕", "name": "pizza", "group": "food-drink" },
+    { "char": "☕", "name": "hot beverage", "group": "food-drink" },
+    { "char": "🎉", "name": "party popper", "group": "activities" },
+    { "char": "🎵", "name": "musical note", "group": "activities" },
+    { "char": "💡", "name": "light bulb", "group": "objects" },
+    { "char": "📱", "name": "mobile phone", "group": "objects" },
+    { "char": "👑", "name": "crown", "group": "clothing" },
+    { "char": "🌙", "name": "crescent moon", "group": "animals-nature" },
+    { "char": "👍", "name": "thumbs up", "group": "gestures" },
+    { "char": "🙏", "name": "folded hands", "group": "gestures" },
+    { "char": "💀", "name": "skull", "group": "smileys" },
+    { "char": "🌈", "name": "rainbow", "group": "animals-nature" },
+    { "char": "🇺🇸", "name": "United States", "group": "flags" },
+    { "char": "😂", "name": "face with tears of joy", "group": "smileys" }
+  ]
+}
