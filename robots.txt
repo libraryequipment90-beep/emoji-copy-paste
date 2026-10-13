@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://libraryequipment90-beep.github.io/emoji-hub/sitemap.xml
