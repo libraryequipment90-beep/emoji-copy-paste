@@ -1787,7 +1787,9 @@
     let copied = 0;
 
     function showToast(emoji) {
-      toast.textContent = emoji + "  copied to clipboard";
+      const label = String(emoji).replace(/\s+/g, " ").trim();
+      const short = label.length > 24 ? label.slice(0, 24) + "…" : label;
+      toast.textContent = short + "  copied to clipboard";
       toast.classList.add("show");
       clearTimeout(showToast._t);
       showToast._t = setTimeout(() => toast.classList.remove("show"), 1400);
@@ -2760,9 +2762,9 @@
     });
     renderCreatures("Animals");
 
-    const apiSnippet = `GET /api/emojis.json
+    const apiSnippet = `GET api/emojis.json
 
-fetch("/api/emojis.json")
+fetch("api/emojis.json")
   .then(r => r.json())
   .then(data => console.log(data.emojis[0]));
 
