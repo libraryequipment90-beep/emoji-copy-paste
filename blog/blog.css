@@ -139,9 +139,26 @@ article.post {
   font-size: 14px;
 }
 .more a:hover { text-decoration: underline; }
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-bottom: 10px;
+}
+.footer-nav a { color: var(--muted); }
+.footer-nav a:hover { color: var(--gold); text-decoration: underline; }
 footer {
   border-top: 1px solid var(--line);
   padding: 20px 0 32px;
   color: var(--muted);
   font-size: 13px;
+}
+:where(a, button):focus-visible {
+  outline: 3px solid rgba(37,99,235,.55);
+  outline-offset: 2px;
+}
+@media (max-width: 640px) {
+  .wrap { padding: 0 12px; }
+  .post h1 { font-size: 1.6rem; }
+  .cover { height: 140px; font-size: 56px; }
 }
