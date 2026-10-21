@@ -11,8 +11,6 @@
   <meta name="theme-color" content="#ffffff" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-  <link rel="preconnect" href="https://api.dicebear.com" />
-  <link rel="dns-prefetch" href="https://api.dicebear.com" />
   <!--
     Analytics (optional): add a privacy-respecting provider snippet here.
     Do not add tracking until you have reviewed privacy.html and updated it
@@ -808,27 +806,28 @@
     .subtools { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
     .avatar-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 14px;
     }
     .avatar-card {
       border: 1px solid var(--line);
       background: #fff;
-      border-radius: 14px;
-      padding: 10px 8px 12px;
+      border-radius: 16px;
+      padding: 12px 8px 14px;
       cursor: pointer;
       text-align: center;
     }
     .avatar-card:hover { border-color: var(--gold); background: #eef3ff; }
     .avatar-card.copied { background: #dcfce7; border-color: #16a34a; }
     .avatar-card img {
-      width: 96px;
-      height: 96px;
+      width: 128px;
+      height: 128px;
       object-fit: contain;
-      border-radius: 18px;
+      border-radius: 24px;
       display: block;
       margin: 0 auto 8px;
-      background: #eef2ff;
+      background: radial-gradient(circle at 50% 38%, #ffffff 0%, #eef2ff 62%, #dbe4ff 100%);
+      filter: drop-shadow(0 8px 14px rgba(15, 23, 42, 0.12));
     }
     .avatar-card small { display: block; color: var(--muted); font-size: 12px; }
     .emo-3d, .cell.fluent img, .flag-img, .avatar-card img { max-width: 100%; }
@@ -1919,7 +1918,7 @@
     <section class="tool-panel tab-hidden" id="avatars" data-name="Cartoon 3D Avatars">
       <div class="tool-card">
         <h2>Cartoon 3D <span>Avatars</span></h2>
-        <p class="tool-lead">3D cartoon avatars for boys, women, and girls. Click a face to copy the image.</p>
+        <p class="tool-lead">Fluent 3D cartoon faces for boys, women, and girls. Click a card to copy the picture.</p>
         <div class="mood-chips" id="avatar-chips"></div>
         <div class="avatar-grid" id="avatar-grid"></div>
       </div>
@@ -1928,7 +1927,7 @@
     <section class="tool-panel tab-hidden" id="creatures" data-name="Cartoon Creatures">
       <div class="tool-card">
         <h2>Cartoon 3D <span>Creatures</span></h2>
-        <p class="tool-lead">3D cartoon animals, birds, snakes, sea life, bugs, and mythical creatures. Click a card to copy the image.</p>
+        <p class="tool-lead">Fluent 3D cartoon animals, birds, snakes, sea life, bugs, and mythical creatures. Click a card to copy the picture.</p>
         <div class="mood-chips" id="creature-chips"></div>
         <div class="avatar-grid" id="creature-grid"></div>
       </div>
@@ -3233,23 +3232,56 @@
       trendGrid.appendChild(d);
     });
 
-    function cartoonSrc(style, seed, extra) {
-      return "https://api.dicebear.com/9.x/" + style + "/png?seed=" + encodeURIComponent(seed) + "&size=160&backgroundColor=eef2ff" + (extra || "");
+    function fluentAsset(id) {
+      return "https://cdn.jsdelivr.net/npm/@lobehub/fluent-emoji-3d@1.1.0/assets/" + id + ".webp";
     }
     const AVATARS = {
-      Boys: ["Arjun","Rohan","Kabir","Aarav","Vivaan","Dev","Ishaan","Neil","Sam","Leo","Omar","Kai"].map((name) => ({
-        name, src: cartoonSrc("adventurer", name, "&hair=short01,short02,short03,short04,short05")
-      })),
-      Women: ["Aisha","Maya","Priya","Noor","Elena","Sofia","Lara","Amira","Nina","Hana","Zara","Leila"].map((name) => ({
-        name, src: cartoonSrc("lorelei", name, "")
-      })),
-      Girls: ["Anaya","Kiara","Meera","Sara","Inaaya","Diya","Aria","Myra","Lila","Nora","Eva","Mia"].map((name) => ({
-        name, src: cartoonSrc("adventurer", "girl-" + name, "&hair=long01,long02,long03,long04,long05")
-      }))
+      Boys: [
+        { name: "Arjun", id: "1f466" },
+        { name: "Rohan", id: "1f466-1f3fb" },
+        { name: "Kabir", id: "1f466-1f3fd" },
+        { name: "Aarav", id: "1f466-1f3ff" },
+        { name: "Vivaan", id: "1f468" },
+        { name: "Dev", id: "1f468-1f3fb" },
+        { name: "Ishaan", id: "1f468-1f3fd" },
+        { name: "Neil", id: "1f468-200d-1f9b0" },
+        { name: "Sam", id: "1f468-200d-1f9b1" },
+        { name: "Leo", id: "1f471-200d-2642-fe0f" },
+        { name: "Omar", id: "1f9d4" },
+        { name: "Kai", id: "1f934" }
+      ],
+      Women: [
+        { name: "Aisha", id: "1f469" },
+        { name: "Maya", id: "1f469-1f3fb" },
+        { name: "Priya", id: "1f469-1f3fd" },
+        { name: "Noor", id: "1f9d5" },
+        { name: "Elena", id: "1f469-200d-1f9b0" },
+        { name: "Sofia", id: "1f469-200d-1f9b1" },
+        { name: "Lara", id: "1f471-200d-2640-fe0f" },
+        { name: "Amira", id: "1f9d5-1f3fd" },
+        { name: "Nina", id: "1f478" },
+        { name: "Hana", id: "1f470-200d-2640-fe0f" },
+        { name: "Zara", id: "1f475" },
+        { name: "Leila", id: "1f469-1f3ff" }
+      ],
+      Girls: [
+        { name: "Anaya", id: "1f467" },
+        { name: "Kiara", id: "1f467-1f3fb" },
+        { name: "Meera", id: "1f467-1f3fc" },
+        { name: "Sara", id: "1f467-1f3fd" },
+        { name: "Inaaya", id: "1f467-1f3fe" },
+        { name: "Diya", id: "1f467-1f3ff" },
+        { name: "Aria", id: "1f9d2" },
+        { name: "Myra", id: "1f9d2-1f3fb" },
+        { name: "Lila", id: "1f9d2-1f3fd" },
+        { name: "Nora", id: "1f478-1f3fb" },
+        { name: "Eva", id: "1f478-1f3fd" },
+        { name: "Mia", id: "1f476" }
+      ]
     };
     const avatarChips = document.getElementById("avatar-chips");
     const avatarGrid = document.getElementById("avatar-grid");
-    async function copyAvatar(src, btn) {
+    async function copyAvatar(src, btn, kind) {
       let ok = false;
       try {
         const res = await fetch(src);
@@ -3272,26 +3304,28 @@
         btn.classList.add("copied");
         setTimeout(() => btn.classList.remove("copied"), 700);
       }
-      showToast("Avatar copied");
+      showToast((kind || "Avatar") + " copied");
     }
     function renderAvatars(group) {
       [...avatarChips.children].forEach((c) => c.classList.toggle("active", c.dataset.group === group));
       avatarGrid.innerHTML = "";
       (AVATARS[group] || []).forEach((item) => {
+        const src = fluentAsset(item.id);
         const b = document.createElement("button");
         b.type = "button";
         b.className = "avatar-card";
         const img = document.createElement("img");
-        img.src = item.src;
+        img.src = src;
         img.alt = item.name;
-        img.width = 96;
-        img.height = 96;
+        img.width = 128;
+        img.height = 128;
         img.loading = "lazy";
+        img.decoding = "async";
         const label = document.createElement("small");
         label.textContent = item.name;
         b.appendChild(img);
         b.appendChild(label);
-        b.addEventListener("click", () => copyAvatar(item.src, b));
+        b.addEventListener("click", () => copyAvatar(src, b, "Avatar"));
         avatarGrid.appendChild(b);
       });
     }
@@ -3306,40 +3340,37 @@
     });
     renderAvatars("Boys");
 
-    function fluentUrl(emoji) {
-      const cps = [...emoji].map((c) => c.codePointAt(0).toString(16));
-      return "https://cdn.jsdelivr.net/npm/@lobehub/fluent-emoji-3d@1.1.0/assets/" + cps.join("-") + ".webp";
-    }
     const CREATURES = {
-      Animals: [["🐶","Dog"],["🐱","Cat"],["🐭","Mouse"],["🐹","Hamster"],["🐰","Rabbit"],["🦊","Fox"],["🐻","Bear"],["🐼","Panda"],["🐨","Koala"],["🐯","Tiger"]],
-      Birds: [["🐦","Bird"],["🐤","Chick"],["🦆","Duck"],["🦅","Eagle"],["🦉","Owl"],["🦜","Parrot"],["🦚","Peacock"],["🦢","Swan"],["🕊️","Dove"],["🐧","Penguin"]],
-      "Snakes": [["🐍","Snake"],["🐢","Turtle"],["🦎","Lizard"],["🐊","Crocodile"],["🦖","T-Rex"],["🦕","Dinosaur"],["🐉","Dragon"],["🐲","Dragon Face"]],
-      "Sea Life": [["🐳","Whale"],["🐋","Blue Whale"],["🐬","Dolphin"],["🦈","Shark"],["🐙","Octopus"],["🦑","Squid"],["🦀","Crab"],["🦞","Lobster"],["🐠","Tropical Fish"],["🐡","Pufferfish"]],
-      "Insects": [["🐝","Bee"],["🐛","Bug"],["🦋","Butterfly"],["🐞","Ladybug"],["🐜","Ant"],["🦗","Cricket"],["🕷️","Spider"],["🦂","Scorpion"],["🪲","Beetle"],["🪳","Cockroach"]],
-      Mythical: [["🦄","Unicorn"],["🧚","Fairy"],["🧜","Merperson"],["👻","Ghost"],["👽","Alien"],["👹","Ogre"],["👺","Goblin"],["🧞","Genie"],["🧌","Troll"],["🦇","Bat"]]
+      Animals: [["🐶","Dog","1f436"],["🐱","Cat","1f431"],["🐭","Mouse","1f42d"],["🐹","Hamster","1f439"],["🐰","Rabbit","1f430"],["🦊","Fox","1f98a"],["🐻","Bear","1f43b"],["🐼","Panda","1f43c"],["🐨","Koala","1f428"],["🐯","Tiger","1f42f"]],
+      Birds: [["🐦","Bird","1f426"],["🐤","Chick","1f424"],["🦆","Duck","1f986"],["🦅","Eagle","1f985"],["🦉","Owl","1f989"],["🦜","Parrot","1f99c"],["🦚","Peacock","1f99a"],["🦢","Swan","1f9a2"],["🕊️","Dove","1f54a-fe0f"],["🐧","Penguin","1f427"]],
+      Snakes: [["🐍","Snake","1f40d"],["🐢","Turtle","1f422"],["🦎","Lizard","1f98e"],["🐊","Crocodile","1f40a"],["🦖","T-Rex","1f996"],["🦕","Dinosaur","1f995"],["🐉","Dragon","1f409"],["🐲","Dragon Face","1f432"]],
+      "Sea Life": [["🐳","Whale","1f433"],["🐋","Blue Whale","1f40b"],["🐬","Dolphin","1f42c"],["🦈","Shark","1f988"],["🐙","Octopus","1f419"],["🦑","Squid","1f991"],["🦀","Crab","1f980"],["🦞","Lobster","1f99e"],["🐠","Tropical Fish","1f420"],["🐡","Pufferfish","1f421"]],
+      Insects: [["🐝","Bee","1f41d"],["🐛","Bug","1f41b"],["🦋","Butterfly","1f98b"],["🐞","Ladybug","1f41e"],["🐜","Ant","1f41c"],["🦗","Cricket","1f997"],["🕷️","Spider","1f577-fe0f"],["🦂","Scorpion","1f982"],["🪲","Beetle","1fab2"],["🪳","Cockroach","1fab3"]],
+      Mythical: [["🦄","Unicorn","1f984"],["🧚","Fairy","1f9da"],["🧜","Merperson","1f9dc"],["👻","Ghost","1f47b"],["👽","Alien","1f47d"],["👹","Ogre","1f479"],["👺","Goblin","1f47a"],["🧞","Genie","1f9de"],["🧌","Troll","1f9cc"],["🦇","Bat","1f987"]]
     };
     const creatureChips = document.getElementById("creature-chips");
     const creatureGrid = document.getElementById("creature-grid");
     function renderCreatures(group) {
       [...creatureChips.children].forEach((c) => c.classList.toggle("active", c.dataset.group === group));
       creatureGrid.innerHTML = "";
-      (CREATURES[group] || []).forEach(([emoji, name]) => {
-        const src = fluentUrl(emoji);
+      (CREATURES[group] || []).forEach(([emoji, name, id]) => {
+        const src = fluentAsset(id);
         const b = document.createElement("button");
         b.type = "button";
         b.className = "avatar-card";
         const img = document.createElement("img");
         img.src = src;
         img.alt = name;
-        img.width = 96;
-        img.height = 96;
+        img.width = 128;
+        img.height = 128;
         img.loading = "lazy";
+        img.decoding = "async";
         img.addEventListener("error", () => {
           img.dataset.failed = "1";
           img.remove();
           const span = document.createElement("div");
-          span.style.fontSize = "52px";
-          span.style.lineHeight = "96px";
+          span.style.fontSize = "64px";
+          span.style.lineHeight = "128px";
           span.textContent = emoji;
           b.insertBefore(span, b.firstChild);
         });
@@ -3349,7 +3380,7 @@
         b.appendChild(label);
         b.addEventListener("click", () => {
           if (img.dataset.failed) copyEmoji(emoji, b);
-          else copyAvatar(src, b);
+          else copyAvatar(src, b, "Creature");
         });
         creatureGrid.appendChild(b);
       });
