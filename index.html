@@ -2581,7 +2581,7 @@
       api: ["api"],
       "my-emoji": ["my-emoji"]
     };
-    const panels = [...document.querySelectorAll("main section[id]")];
+    const panels = [...document.querySelectorAll("main section[id]:not(#faq)")];
     const chips = [...document.querySelectorAll("#tabs .chip")];
     let activeTab = "smileys";
 
@@ -2654,13 +2654,6 @@
     if (!startId) startId = "smileys";
     setTab(tabForId(startId), false);
     window.addEventListener("hashchange", () => setTab(tabForId(location.hash.slice(1)), false));
-
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "/" && document.activeElement !== q) {
-        e.preventDefault();
-        q.focus();
-      }
-    });
 
     const RELATED_EMOJI = {
       biscuit:["🍪","🧁","🥐","🍩"], cookie:["🍪","🧁","🍩","🥛"], cookies:["🍪","🥛","🧁","🍩"],
@@ -2828,7 +2821,7 @@
     }
     runSearch = function () {
       const term = q.value.trim().toLowerCase();
-      const panels = document.querySelectorAll("main section[id]");
+      const panels = document.querySelectorAll("main section[id]:not(#faq)");
       if (!term) {
         const ids = tabIds();
         panels.forEach((sec) => {
