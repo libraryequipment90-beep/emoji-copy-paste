@@ -125,21 +125,25 @@
   </script>
   <style>
     :root {
-      --bg-elev: #f7f8fa;
+      --bg: #f8fafc;
+      --bg-elev: #f1f5f9;
       --bg-card: #ffffff;
-      --line: #e5e7eb;
-      --text: #1f2937;
-      --muted: #6b7280;
+      --line: #e2e8f0;
+      --text: #0f172a;
+      --muted: #64748b;
       --gold: #2563eb;
       --gold-dim: #1d4ed8;
+      --gold-soft: #eff6ff;
       --mint: #059669;
-      --shadow: 0 10px 30px rgba(15,23,42,.08);
+      --shadow: 0 1px 2px rgba(15,23,42,.05), 0 10px 28px rgba(15,23,42,.06);
+      --radius: 14px;
+      --radius-sm: 10px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
-      font-family: "Segoe UI", "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji", system-ui, sans-serif;
-      background: #ffffff;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+      background: var(--bg);
       color: var(--text);
       min-height: 100vh;
       line-height: 1.5;
@@ -149,29 +153,29 @@
       position: sticky;
       top: 0;
       z-index: 40;
-      backdrop-filter: blur(16px);
-      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(18px) saturate(1.2);
+      background: rgba(248,250,252,.88);
       border-bottom: 1px solid var(--line);
     }
     .wrap {
-      max-width: 1280px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 24px;
     }
     .topbar {
       display: flex;
       align-items: center;
       gap: 16px;
-      padding: 14px 0 10px;
+      padding: 16px 0 12px;
       flex-wrap: wrap;
     }
     .brand {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-weight: 800;
-      letter-spacing: -.03em;
-      font-size: 1.15rem;
+      font-weight: 750;
+      letter-spacing: -.04em;
+      font-size: 1.12rem;
       white-space: nowrap;
     }
     .logo {
@@ -179,11 +183,11 @@
       height: 36px;
       display: grid;
       place-items: center;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--gold), #e08a2c);
-      color: #1a1408;
-      font-size: 1.15rem;
-      box-shadow: 0 6px 16px rgba(37,99,235,.18);
+      border-radius: 11px;
+      background: linear-gradient(160deg, #3b82f6, #1d4ed8);
+      color: #fff;
+      font-size: 1.12rem;
+      box-shadow: 0 6px 16px rgba(37,99,235,.28);
     }
     .brand-title {
       margin: 0;
@@ -206,17 +210,18 @@
     }
     .search input {
       width: 100%;
-      background: var(--bg-elev);
+      background: var(--bg-card);
       border: 1px solid var(--line);
       color: var(--text);
       border-radius: 999px;
-      padding: 10px 14px 10px 42px;
+      padding: 11px 14px 11px 42px;
       font-size: 15px;
       outline: none;
+      box-shadow: 0 1px 2px rgba(15,23,42,.04);
     }
     .search input:focus {
       border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+      box-shadow: 0 0 0 4px rgba(37,99,235,.12);
     }
     .search .mag {
       position: absolute;
@@ -230,6 +235,10 @@
       font-size: 12px;
       color: var(--muted);
       white-space: nowrap;
+      font-weight: 500;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--bg-elev);
     }
     .chip-slider {
       position: relative;
@@ -244,7 +253,7 @@
       height: 32px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: #fff;
+      background: var(--bg-card);
       color: var(--text);
       font-size: 18px;
       line-height: 1;
@@ -252,7 +261,7 @@
       display: grid;
       place-items: center;
       z-index: 2;
-      box-shadow: 0 2px 8px rgba(15,23,42,.08);
+      box-shadow: 0 1px 2px rgba(15,23,42,.05);
     }
     .chip-arrow:hover {
       border-color: var(--gold);
@@ -286,20 +295,22 @@
     }
     .chip-slider::before {
       left: 36px;
-      background: linear-gradient(90deg, #fff, rgba(255,255,255,0));
+      background: linear-gradient(90deg, var(--bg), rgba(248,250,252,0));
     }
     .chip-slider::after {
       right: 36px;
-      background: linear-gradient(270deg, #fff, rgba(255,255,255,0));
+      background: linear-gradient(270deg, var(--bg), rgba(248,250,252,0));
     }
     .chip {
       flex: 0 0 auto;
       background: var(--bg-card);
       border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 6px 12px;
+      padding: 7px 13px;
       font-size: 13px;
+      font-weight: 550;
       color: var(--text);
+      box-shadow: 0 1px 1px rgba(15,23,42,.03);
     }
     .chip:hover { border-color: var(--gold); color: var(--gold); }
     .chip.active {
@@ -320,14 +331,14 @@
       display: flex;
       align-items: baseline;
       justify-content: space-between;
-      margin-bottom: 12px;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 8px;
+      margin-bottom: 14px;
+      border-bottom: 0;
+      padding-bottom: 0;
     }
     .cat-head h2 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      letter-spacing: -.02em;
+      font-size: 1.2rem;
+      font-weight: 720;
+      letter-spacing: -.03em;
     }
     .cat-ico { margin-right: 6px; }
     .count {
@@ -338,35 +349,42 @@
       color: var(--muted);
       font-size: 14px;
       margin: -2px 0 12px;
-      max-width: 72ch;
+      max-width: none;
       line-height: 1.45;
+      white-space: nowrap;
+      overflow-x: auto;
     }
     .travel-intro { margin: -4px 0 14px; }
     .table-wrap {
       overflow-x: auto;
-      border: 1px solid #e5e7eb;
+      border: 0;
       border-radius: 0;
-      background: #fff;
+      background: transparent;
+      box-shadow: none;
+      padding: 2px 0 8px;
     }
     .emoji-table {
       width: 100%;
-      border-collapse: collapse;
+      border-collapse: separate;
+      border-spacing: 8px;
       table-layout: fixed;
     }
     .emoji-table td {
-      border: 1px solid #e8eaed;
+      border: 1px solid var(--line);
       padding: 0;
       width: 12.5%;
-      height: 80px;
+      height: 84px;
       text-align: center;
       vertical-align: middle;
-      background: #fff;
+      background: var(--bg-card);
+      border-radius: 12px;
+      box-shadow: 0 1px 2px rgba(15,23,42,.04);
       transition: background .12s ease, box-shadow .12s ease, border-color .12s ease;
     }
     .emoji-table td:hover {
-      background: #eef3ff;
-      border-color: #4b7cf0;
-      box-shadow: inset 0 0 0 2px #4b7cf0;
+      background: var(--gold-soft);
+      border-color: #93c5fd;
+      box-shadow: 0 4px 12px rgba(37,99,235,.12);
       z-index: 1;
       position: relative;
     }
@@ -377,9 +395,9 @@
       appearance: none;
       border: 0;
       background: transparent;
-      border-radius: 0;
+      border-radius: 12px;
       width: 100%;
-      height: 80px;
+      height: 84px;
       font-size: 40px;
       cursor: pointer;
       display: grid;
@@ -423,7 +441,7 @@
     .cell:active { transform: scale(.96); }
     .cell.copied {
       border-color: var(--mint);
-      background: rgba(126,224,176,.12);
+      background: #ecfdf5;
     }
     .hidden { display: none !important; }
     .empty {
@@ -434,28 +452,30 @@
     }
     .empty.show { display: block; }
     footer {
-      margin-top: 48px;
+      margin-top: 56px;
       padding: 28px 0 48px;
       border-top: 1px solid var(--line);
       color: var(--muted);
       font-size: 13px;
+      background: var(--bg-card);
     }
     .toast {
       position: fixed;
       left: 50%;
       bottom: 28px;
       transform: translateX(-50%) translateY(20px);
-      background: #ffffff;
-      border: 1px solid var(--line);
-      color: var(--text);
-      padding: 10px 16px;
+      background: #0f172a;
+      border: 1px solid #0f172a;
+      color: #fff;
+      padding: 11px 18px;
       border-radius: 999px;
-      box-shadow: var(--shadow);
+      box-shadow: 0 12px 32px rgba(15,23,42,.22);
       opacity: 0;
       pointer-events: none;
       transition: .22s ease;
       z-index: 50;
       font-size: 14px;
+      font-weight: 550;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -471,13 +491,14 @@
     }
     .empty .btn { margin-top: 12px; }
     .faq-block {
-      margin: 36px 0 8px;
-      padding: 22px 22px 8px;
+      margin: 40px 0 8px;
+      padding: 24px 24px 10px;
       border: 1px solid var(--line);
-      border-radius: 16px;
-      background: #fff;
+      border-radius: var(--radius);
+      background: var(--bg-card);
+      box-shadow: var(--shadow);
     }
-    .faq-block h2 { font-size: 1.15rem; margin: 0 0 14px; }
+    .faq-block h2 { font-size: 1.2rem; margin: 0 0 16px; letter-spacing: -.03em; }
     .faq-block dt { font-weight: 700; margin: 0 0 4px; }
     .faq-block dd { color: var(--muted); margin: 0 0 16px; }
     .faq-block a { color: var(--gold); text-decoration: underline; }
@@ -485,30 +506,30 @@
       padding: 12px 0 16px;
     }
     .travel-card {
-      background: #ffffff;
-      color: #1f2937;
-      border-radius: 12px;
+      background: var(--bg-card);
+      color: var(--text);
+      border-radius: var(--radius);
       padding: 22px 22px 18px;
-      box-shadow: none;
-      border: 1px solid #e8edf3;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
     }
     .travel-title {
-      color: #4b7cf0;
-      font-size: 1.55rem;
-      font-weight: 700;
-      letter-spacing: -.02em;
+      color: var(--text);
+      font-size: 1.35rem;
+      font-weight: 720;
+      letter-spacing: -.03em;
       margin: 0 0 16px;
       padding: 0 2px 10px;
-      border-bottom: 1px solid #eef1f5;
+      border-bottom: 1px solid var(--line);
     }
     .travel-table td {
-      height: 80px;
+      height: 84px;
     }
     .cell.fluent {
-      height: 80px;
+      height: 84px;
       background: transparent;
       border: 0;
-      border-radius: 0;
+      border-radius: 12px;
       box-shadow: none;
     }
     .cell.fluent img {
@@ -525,18 +546,18 @@
     }
     .cell.fluent.copied {
       border-color: transparent;
-      background: #e8efff;
+      background: #ecfdf5;
     }
     .emoji-table td.picked,
     .cell.fluent.picked {
-      background: #4b7cf0;
-      border-color: #4b7cf0;
+      background: var(--gold);
+      border-color: var(--gold);
     }
-     .flag-table td {
-      height: 76px;
+      .flag-table td {
+      height: 84px;
     }
     .flag-cell {
-      height: 76px;
+      height: 84px;
       gap: 2px;
       font-size: 10px;
       padding: 4px 2px 6px;
@@ -579,7 +600,7 @@
       letter-spacing: -.03em;
     }
     .blog-head h2 span { color: var(--gold); }
-    .blog-head p { color: var(--muted); font-size: 13px; }
+    .blog-head p { color: var(--muted); font-size: 13px; white-space: nowrap; overflow-x: auto; max-width: none; }
     .blog-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -588,13 +609,14 @@
     .blog-card {
       background: var(--bg-card);
       border: 1px solid var(--line);
-      border-radius: 14px;
+      border-radius: var(--radius);
       overflow: hidden;
       display: flex;
       flex-direction: column;
       min-height: 100%;
       color: inherit;
-      transition: transform .15s ease, border-color .15s ease;
+      box-shadow: var(--shadow);
+      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
     }
     .blog-card:hover {
       transform: translateY(-3px);
@@ -644,18 +666,19 @@
     }
     .tool-panel { padding: 12px 0 28px; }
     .tool-card {
-      background: #fff;
+      background: var(--bg-card);
       border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 20px 20px 18px;
+      border-radius: var(--radius);
+      padding: 22px 22px 20px;
+      box-shadow: var(--shadow);
     }
     .tool-card h2 {
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       letter-spacing: -.03em;
       margin-bottom: 6px;
     }
     .tool-card h2 span { color: var(--gold); }
-    .tool-lead { color: var(--muted); font-size: 14px; margin-bottom: 16px; max-width: 72ch; }
+    .tool-lead { color: var(--muted); font-size: 14px; margin-bottom: 16px; max-width: none; white-space: nowrap; overflow-x: auto; }
     .tool-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
     .tool-card textarea, .tool-card input[type="text"], .tool-card select {
       width: 100%;
@@ -682,6 +705,7 @@
       font-size: 14px;
       font-weight: 600;
       cursor: pointer;
+      box-shadow: 0 1px 2px rgba(37,99,235,.25);
     }
     .btn:hover { background: var(--gold-dim); }
     .btn.ghost {
@@ -860,18 +884,35 @@
     .alpha-bar .mood-chip { min-width: 36px; justify-content: center; padding: 6px 10px; }
     .alpha-letter { margin: 18px 0 8px; font-size: 15px; font-weight: 800; color: #1c2430; }
     .alpha-letter:first-child { margin-top: 4px; }
+    .alpha-item-name {
+      display: block;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 10px;
+      color: #64748b;
+      line-height: 1.2;
+      margin-top: 2px;
+      pointer-events: none;
+    }
+    #alpha-groups .cell {
+      height: auto;
+      min-height: 84px;
+      padding: 8px 4px 10px;
+      grid-template-rows: 52px auto;
+    }
+    #alpha-groups .emoji-table td { height: 96px; }
     .avatar-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
       gap: 10px;
     }
     .studio-gallery {
-      background:
-        radial-gradient(90% 60% at 50% 0%, rgba(255,255,255,.9), transparent 58%),
-        linear-gradient(180deg, #f6f8fb 0%, #e8edf4 100%);
-      border: 1px solid #d5dde8;
-      box-shadow: 0 18px 40px rgba(20, 30, 50, .08);
-      color: #1c2430;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      color: var(--text);
     }
     .studio-gallery h2 { color: #1c2430; }
     .studio-gallery h2 span { color: #3d6fd8; }
@@ -886,17 +927,18 @@
       border-color: #3d6fd8;
       color: #fff;    }
     .avatar-card {
-      border: 1px solid #dbe3ee;
-      background: #fff;
-      border-radius: 14px;
-      padding: 8px 6px 10px;      cursor: pointer;
+      border: 1px solid var(--line);
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 8px 6px 10px;
+      cursor: pointer;
       text-align: center;
-      box-shadow: 0 6px 14px rgba(20, 30, 50, .08);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, .05);
     }
     .avatar-card:hover {
-      border-color: #7eb0ff;
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 10px 18px rgba(40, 80, 160, .14);
+      border-color: #93c5fd;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(37, 99, 235, .1);
     }
     .avatar-card.copied { background: #eef8f0; border-color: #7ad39a; }
     .avatar-card img {
@@ -976,14 +1018,15 @@
     }
     .modal-backdrop[hidden] { display: none; }
     .modal {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: var(--shadow);
+      background: var(--bg-card);
+      border-radius: 18px;
+      box-shadow: 0 24px 64px rgba(15,23,42,.18);
       width: min(460px, 100%);
       max-height: 90vh;
       overflow: auto;
-      padding: 20px;
+      padding: 22px;
       position: relative;
+      border: 1px solid var(--line);
     }
     .modal-close {
       position: absolute;
@@ -1044,39 +1087,51 @@
       .brand { white-space: normal; }
       .brand-title small { white-space: normal; }
       .search { min-width: 0; flex: 1 1 100%; }
-      .copied-count { width: 100%; }
+      .copied-count { width: 100%; text-align: center; }
       .chip-slider { gap: 2px; }
       .chip-arrow { width: 28px; height: 28px; }
       .chip-slider::before { left: 30px; }
       .chip-slider::after { right: 30px; }
-      .table-wrap { overflow-x: hidden; }
+      .table-wrap { overflow-x: hidden; border-radius: 0; padding: 0; }
+      .emoji-table {
+        border-spacing: 0;
+      }
       .emoji-table, .emoji-table tbody, .emoji-table tr {
         display: block;
         width: 100%;
       }
+      .emoji-table tr {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 6px;
+      }
       .emoji-table td {
-        display: inline-block;
-        width: 25%;
-        height: 64px;
+        display: block;
+        width: calc((100% - 18px) / 4);
+        flex: 0 0 calc((100% - 18px) / 4);
+        height: 68px;
         vertical-align: top;
+        border-radius: 10px;
       }
       .emo-3d, .cell.fluent img { width: 40px; height: 40px; }
       .emo-native { font-size: 32px; }
-      .cell, .cell.fluent { height: 64px; font-size: 32px; min-height: 44px; }
+      .cell, .cell.fluent { height: 68px; font-size: 32px; min-height: 44px; border-radius: 10px; }
       .flag-img { width: 28px; height: 28px; }
       .travel-table td, .flag-table td, .flag-cell { height: 72px; }
       .flag-name { font-size: 9px; }
       .tool-card { padding: 14px 12px; }
+      .faq-block { padding: 16px 14px 8px; }
       .avatar-grid { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 8px; }
       .avatar-card img { width: 56px; height: 56px; }
       .modal { width: 100%; padding: 16px; }
     }
     @media (max-width: 420px) {
       .wrap { padding: 0 8px; }
-      .emoji-table td { height: 60px; }
+      .emoji-table td { height: 64px; }
       .emo-3d, .cell.fluent img { width: 36px; height: 36px; }
       .emo-native { font-size: 28px; }
-      .cell, .cell.fluent { height: 60px; font-size: 28px; }
+      .cell, .cell.fluent { height: 64px; font-size: 28px; }
       .flag-img { width: 24px; height: 24px; }
       .travel-table td, .flag-table td, .flag-cell { height: 68px; }
     }
@@ -1808,7 +1863,7 @@
         <h2><span class="cat-ico">🔤</span> A–Z Emoji</h2>
         <span class="count" id="alpha-count">0</span>
       </div>
-      <p class="cat-intro">Every unique emoji grouped A to Z by English name. Click a letter, then click any emoji to copy.</p>
+      <p class="cat-intro">Item names from A to Z: apple, banana, cat, and every other named item. Click a letter, then click any emoji to copy.</p>
       <div class="alpha-bar" id="alpha-bar"></div>
       <div id="alpha-groups"></div>
     </section>
@@ -2738,6 +2793,30 @@
       nameByEmoji = map;
       buildAlphabet();
     }
+    function isSkinVariantName(n) {
+      return /skin tone|curly hair|white hair|red hair|\bbald\b/.test(String(n || "").toLowerCase());
+    }
+    function itemNameForAlpha(el) {
+      var n = (el.getAttribute("data-name") || "").toLowerCase().replace(/&amp;/g, "&");
+      n = n.replace(/:.*$/, "").replace(/\s+/g, " ").trim();
+      n = n.replace(/^(red|green|blue|yellow|orange|purple|white|black|brown|hot|cold|golden|smiling|grinning|winking|slightly|loudly|upside[- ]down|beaming|melting|dotted line)\s+/, "");
+      if (n.indexOf("musical keyboard") === 0) n = "piano";
+      if (n.indexOf("globe showing") === 0) n = "earth " + n.slice(14);
+      if (n === "yo yo") n = "yo-yo";
+      if (n === "jack o lantern") n = "jack-o-lantern";
+      return n || (el.getAttribute("data-name") || "");
+    }
+    function letterForItemName(n) {
+      var m = String(n || "").match(/[a-z]/);
+      return m ? m[0].toUpperCase() : "#";
+    }
+    function extraLettersForEmoji(e, n) {
+      var extra = [];
+      if (/🎹/.test(e) || n.indexOf("piano") !== -1) extra.push("P");
+      if (/[🌍🌎🌏]/.test(e) || n.indexOf("earth") !== -1) extra.push("E");
+      if (/🐛/.test(e) || n === "bug") extra.push("I");
+      return extra;
+    }
     function letterForEmoji(e) {
       const n = namesForEmoji(e);
       const m = n.match(/[a-z]/);
@@ -2755,14 +2834,21 @@
       document.querySelectorAll("main section.cat:not(#alphabet) .cell[data-emoji]").forEach((el) => {
         const e = el.getAttribute("data-emoji") || "";
         const k = normEmoji(e);
-        if (!k || seen.has(k)) return;
+        const rawName = el.getAttribute("data-name") || "";
+        if (!k || seen.has(k) || isSkinVariantName(rawName)) return;
         seen.add(k);
-        buckets[letterForEmoji(e)].push(el);
+        const item = itemNameForAlpha(el);
+        const L = letterForItemName(item);
+        buckets[L].push({ el: el, name: item });
+        extraLettersForEmoji(e, item).forEach((X) => {
+          if (X !== L) buckets[X].push({ el: el, name: item });
+        });
       });
       bar.innerHTML = "";
       groups.innerHTML = "";
       letters.concat(["#"]).forEach((L) => {
         const items = buckets[L] || [];
+        items.sort((a, b) => a.name.localeCompare(b.name));
         const chip = document.createElement("button");
         chip.type = "button";
         chip.className = "mood-chip";
@@ -2788,7 +2874,12 @@
           const tr = document.createElement("tr");
           items.slice(i, i + 8).forEach((src) => {
             const td = document.createElement("td");
-            td.appendChild(src.cloneNode(true));
+            const clone = src.el.cloneNode(true);
+            const label = document.createElement("span");
+            label.className = "alpha-item-name";
+            label.textContent = src.name;
+            clone.appendChild(label);
+            td.appendChild(clone);
             tr.appendChild(td);
           });
           tb.appendChild(tr);
